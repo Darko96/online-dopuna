@@ -2,15 +2,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles.css";
 import Cart from "./Cart";
 import TopUp from "./TopUp";
+import { TopUpProvider } from "./TopUpContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<TopUp />}></Route>
-        <Route path="cart" element={<Cart />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <TopUpProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<TopUp />}></Route>
+          <Route path="cart" element={<Cart />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </TopUpProvider>
   );
 }
 

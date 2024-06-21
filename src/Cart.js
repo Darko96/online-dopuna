@@ -1,4 +1,8 @@
+import { useTopUp } from "./TopUpContext";
+
 function Cart() {
+  const { selectedCheckBox, topUpValue, phoneNumber } = useTopUp();
+
   return (
     <section class="four-card-section">
       <div class="heading-container">
@@ -9,14 +13,22 @@ function Cart() {
       <div class="custom-top-up-container">
         <div class="custom-top-up-box">
           <h3>Online dopuna</h3>
-          <p>Za broj 0605169255</p>
+          <p>Za broj {phoneNumber}</p>
+          <div>
+            <p>{topUpValue} RSD</p>
+            <p>odmah</p>
+          </div>
+          <div>
+            <p>darkomijatovic2016@gmail.com</p>
+            <p>Račun za online dopunu ćeš dobiti putem e-maila.</p>
+          </div>
         </div>
       </div>
 
       <div class="custom-top-up-container">
         <div class="custom-top-up-box">
-          <h3>Još malo do kraja kupovine</h3>
-          <p>Ostalo je još samo da potvrdiš i uneseš podatke za plaćanje.</p>
+          <h3>Plaćanje</h3>
+          <p>Plaćanje karticom</p>
 
           <div>
             <input type="checkbox" />

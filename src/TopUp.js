@@ -1,24 +1,39 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useTopUp } from "./TopUpContext";
+import { useNavigate } from "react-router-dom";
 
 function TopUp() {
-  const [selectedCheckBox, setSelectedCheckBox] = useState("checkbox-500");
-  const [topUpValue, setTopUpValue] = useState(null);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const {
+    selectedCheckBox,
+    topUpValue,
+    agreedToTerms,
+    showMessage,
+    setShowMessage,
+    phoneNumber,
+    handleSelectedCheckBox,
+    handleTopUpValue,
+    handleAgreedToTerms,
+    handlePhoneNUmber,
+  } = useTopUp();
+  const navigate = useNavigate();
 
-  const handleSelectedCheckBox = (event) => {
-    const { name } = event.target;
-    setSelectedCheckBox(name);
-  };
-
-  const hadnleAgreedToTerms = (event) => {
-    setAgreedToTerms((prevState) => !prevState);
+  const handleShowMessage = () => {
+    if (
+      agreedToTerms &&
+      phoneNumber &&
+      !(topUpValue < 200 || topUpValue > 5000)
+    ) {
+      navigate("/cart");
+    } else if (agreedToTerms && !phoneNumber) {
+      setShowMessage(true);
+    } else if (agreedToTerms && (topUpValue < 200 || topUpValue > 5000)) {
+      setShowMessage(true);
+    } else {
+      setShowMessage(true);
+    }
   };
 
   return (
     <section class="four-card-section">
-      <Link to="/cart"></Link>
-
       <div class="heading-container">
         <h1>Dopuni online</h1>
         <h2>Dopuni prepaid brzo i lako</h2>
@@ -32,7 +47,7 @@ function TopUp() {
             name="checkbox-500"
             checked={selectedCheckBox === "checkbox-500"}
             value={500}
-            onClick={handleSelectedCheckBox}
+            onChange={handleSelectedCheckBox}
           />
         </div>
         <div class="middle">
@@ -43,7 +58,7 @@ function TopUp() {
               name="checkbox-800"
               checked={selectedCheckBox === "checkbox-800"}
               value={800}
-              onClick={handleSelectedCheckBox}
+              onChange={handleSelectedCheckBox}
             />
           </div>
 
@@ -54,7 +69,7 @@ function TopUp() {
               name="checkbox-1200"
               checked={selectedCheckBox === "checkbox-1200"}
               value={1200}
-              onClick={handleSelectedCheckBox}
+              onChange={handleSelectedCheckBox}
             />
           </div>
         </div>
@@ -66,7 +81,7 @@ function TopUp() {
             name="checkbox-2000"
             checked={selectedCheckBox === "checkbox-2000"}
             value={2000}
-            onClick={handleSelectedCheckBox}
+            onChange={handleSelectedCheckBox}
           />
         </div>
       </div>
@@ -79,11 +94,16 @@ function TopUp() {
             type="checkbox"
             name="checkbox-custom"
             checked={selectedCheckBox === "checkbox-custom"}
-            value={2000}
-            onClick={handleSelectedCheckBox}
+            value={topUpValue}
+            onChange={handleSelectedCheckBox}
           />
           {selectedCheckBox === "checkbox-custom" && (
-            <input type="number" min="200" max="5000" />
+            <input
+              onChange={handleTopUpValue}
+              type="number"
+              // min="200"
+              // max="5000"
+            />
           )}
         </div>
       </div>
@@ -99,6 +119,7 @@ function TopUp() {
             placeholder="Broj telefona za dopunu*"
             pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
             required
+            onChange={handlePhoneNUmber}
           />
         </div>
       </div>
@@ -113,7 +134,7 @@ function TopUp() {
               type="checkbox"
               name="checkbox-agree"
               checked={agreedToTerms}
-              onClick={hadnleAgreedToTerms}
+              onClick={handleAgreedToTerms}
             />
             <label>
               Slažem se sa{" "}
@@ -124,15 +145,23 @@ function TopUp() {
             </label>
           </div>
 
-          {!agreedToTerms && (
+          {agreedToTerms &&
+            (topUpValue < 200 || topUpValue > 5000) &&
+            showMessage && (
+              <p style={{ color: "red" }}>
+                Uneti iznos mora biti između 200 i 5000.
+              </p>
+            )}
+          {agreedToTerms && !phoneNumber && showMessage && (
+            <p style={{ color: "red" }}>Unesite broj telefona.</p>
+          )}
+          {!agreedToTerms && showMessage && (
             <p style={{ color: "red" }}>
               Morate se složiti sa uslovima kupovine pre nego što nastavite.
             </p>
           )}
 
-          <Link to="cart">
-            <button disabled={!agreedToTerms}>Nastavi</button>
-          </Link>
+          <button onClick={handleShowMessage}>Nastavi</button>
         </div>
       </div>
     </section>
