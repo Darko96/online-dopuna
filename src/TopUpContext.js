@@ -8,6 +8,7 @@ function TopUpProvider({ children }) {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState();
+  const [emailAdress, setEmailAdress] = useState("");
 
   const handleSelectedCheckBox = (event) => {
     const { name } = event.target;
@@ -27,6 +28,10 @@ function TopUpProvider({ children }) {
     setPhoneNumber(event.target.value);
   };
 
+  const handleEmailAdressr = (event) => {
+    setEmailAdress(event.target.value);
+  };
+
   return (
     <TopUpContext.Provider
       value={{
@@ -40,6 +45,9 @@ function TopUpProvider({ children }) {
         setShowMessage,
         phoneNumber,
         setPhoneNumber,
+        emailAdress,
+        setEmailAdress,
+        handleEmailAdressr,
         handlePhoneNUmber,
         handleSelectedCheckBox,
         handleTopUpValue,
