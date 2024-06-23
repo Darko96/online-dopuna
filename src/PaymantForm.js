@@ -44,71 +44,78 @@ const PaymentForm = () => {
   };
 
   const handleShowMessage = () => {
-    setPay(true);
-
-    if (
-      paymentDetails.number &&
-      paymentDetails.expiry &&
-      paymentDetails.cvv &&
-      shouldSave
-    ) {
-      localStorage.setItem("savedCard", JSON.stringify(paymentDetails));
+    if (paymentDetails.number && paymentDetails.expiry && paymentDetails.cvv) {
+      setPay(true);
       navigate("/successfulPayment");
     } else {
       setShowMessage(true);
+    }
+
+    if (shouldSave) {
+      localStorage.setItem("savedCard", JSON.stringify(paymentDetails));
     }
   };
 
   console.log(pay);
 
   return (
-    <div>
-      <form onSubmit={handlePayment}>
-        <h3>Placanje karticom</h3>
-        <input
-          type="text"
-          name="number"
-          placeholder="Broj kartice"
-          value={paymentDetails.number}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="expiry"
-          placeholder={
-            paymentDetails.expiry ? paymentDetails.expiry : "Mesec/Godina"
-          }
-          value={paymentDetails.expiry}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="cvv"
-          placeholder="CVV"
-          value={paymentDetails.cvv}
-          onChange={handleInputChange}
-          required
-        />
-        <div>
-          <input type="checkbox" onChange={handleShouldSave} />
-          <p>Sačuvaj karticu nakon plaćanja</p>
-        </div>
+    <section className="cart-container">
+      <div className="custom-top-up-box">
+        <form onSubmit={handlePayment}>
+          <h3>Placanje karticom</h3>
 
-        {pay &&
-          (!paymentDetails.number ||
-            !paymentDetails.expiry ||
-            !paymentDetails.cvv) && (
-            <p style={{ color: "red" }}>
-              Unesite sve potrebne podatke vezane za placanje.
+          <div className="card-input-box">
+            <input
+              type="number"
+              name="number"
+              placeholder="1234 1234 1234 1234"
+              value={paymentDetails.number}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="number"
+              name="expiry"
+              placeholder={
+                paymentDetails.expiry ? paymentDetails.expiry : "06/24"
+              }
+              value={paymentDetails.expiry}
+              onChange={handleInputChange}
+              maxlength="16"
+              required
+            />
+            <input
+              type="number"
+              name="cvv"
+              placeholder="123"
+              maxlength="3"
+              value={paymentDetails.cvv}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="save-card-box">
+            <input type="checkbox" onChange={handleShouldSave} />
+            <p id="terms" className="terms">
+              Sačuvaj karticu nakon plaćanja
             </p>
-          )}
-        <button onClick={handleShowMessage} type="submit">
-          Nastavi
-        </button>
-      </form>
-    </div>
+          </div>
+
+          {pay &&
+            (!paymentDetails.number ||
+              !paymentDetails.expiry ||
+              !paymentDetails.cvv) && (
+              <p className="terms" style={{ color: "red" }}>
+                Unesite sve potrebne podatke vezane za placanje.
+              </p>
+            )}
+          <button className="btn" onClick={handleShowMessage} type="submit">
+            Nastavi &#x2192;
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 

@@ -24,8 +24,8 @@ body {
 
 .four-card-section {
   width: 90%;
-  margin: 6.4rem auto;
-  max-width: 54rem;
+  margin: 4rem auto;
+  max-width: 111rem;
 }
 
 .heading-container {
@@ -35,6 +35,11 @@ body {
   justify-content: center;
   text-align: center;
   margin-bottom: 6.4rem;
+}
+
+.top-up-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .heading-container h1,
@@ -84,31 +89,43 @@ body {
 }
 
 .custom-top-up-box {
-  height: 20rem;
-  max-width: 54rem;
+  margin: 0 auto;
+  max-width: 111rem;
   padding: 3.2rem;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 15px 30px -11px rgba(131, 166, 210, 0.5);
-  border-top: 4px solid #45d3d3;
+  border-top: 4px solid #a0153e;
+
+  margin-bottom: 3.2rem;
+}
+
+.custom-top-up-box h3 {
+  font-size: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.custom-top-up-box p {
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
 }
 
 .supervisor {
   margin-top: 11rem;
-  border-top: 4px solid #45d3d3;
+  border-top: 4px solid #ffeadd;
 }
 
 .team-builder {
-  border-top: 4px solid #ea5454;
+  border-top: 4px solid #ff6666;
 }
 
 .karma {
-  border-top: 4px solid #fcae4a;
+  border-top: 4px solid #f31559;
 }
 
 .calculator {
   margin-top: 11rem;
-  border-top: 4px solid #549ef2;
+  border-top: 4px solid #a0153e;
 }
 
 .four-card-box h3 {
@@ -132,6 +149,133 @@ body {
   position: absolute;
   right: 3.2rem;
   bottom: 3.2rem;
+}
+
+input[type="checkbox"] {
+  width: 3em;
+  height: 3rem;
+  accent-color: #c80036;
+}
+
+input[type="tel"],
+input[type="email"],
+input[type="number"] {
+  accent-color: #c80036;
+  border: none;
+  padding: 0 1.4rem 1.4rem 0;
+  border-bottom: 1px solid #31363f;
+  background: #f9f5f6;
+  outline: none;
+  max-width: 50%;
+}
+
+.email-tel-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.custom-top-up {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.custom-top-up div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-top-up-box .alert-message {
+  font-size: 1.2rem;
+}
+
+.terms-box {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 1.4rem;
+}
+
+.terms {
+  font-size: 1.4rem;
+}
+
+.btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: #c80036;
+  color: #fff;
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.cart-container {
+  margin: 0 auto;
+  max-width: 111rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.details-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details-box div {
+  width: 70%;
+}
+
+.details-box div div p {
+  font-size: 1.6rem;
+}
+
+#terms.terms {
+  font-size: 1.4rem;
+}
+
+.number,
+.amount,
+.email {
+  color: #c80036;
+  font-size: 1.8rem;
+}
+
+.save-card-box {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.save-card-box p {
+  margin-bottom: 0;
+}
+
+.card-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 20%;
+  max-width: 100%;
+}
+
+.terms-of-buying {
+  color: #a0153e;
 }
 
 /* ******* Media queries ******* */
