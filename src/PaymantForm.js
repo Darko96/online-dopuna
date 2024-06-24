@@ -11,16 +11,36 @@ const PaymentForm = () => {
     expiry: "",
     cvv: "",
   });
-  const [cardDetails, setCardDetails] = useState(
-    localStorage.getItem("savedCard")
-  );
+
   const [pay, setPay] = useState(false);
+
+  const formatCardNumber = (value) => {
+    const cleaned = value.replace(/\s+/g, "");
+    const matches = cleaned.match(/.{1,4}/g);
+    const formatted = matches ? matches.join(" ") : "";
+    return formatted;
+  };
+
+  const formatExpiryDate = (value) => {
+    const cleaned = value.replace(/\D+/g, "");
+    const matches = cleaned.match(/.{1,2}/g);
+    const formatted = matches ? matches.join("/") : "";
+    return formatted.slice(0, 5);
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    let formattedValue = value;
+
+    if (name === "number") {
+      formattedValue = formatCardNumber(value);
+    } else if (name === "expiry") {
+      formattedValue = formatExpiryDate(value);
+    }
+
     setPaymentDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: value,
+      [name]: formattedValue,
     }));
   };
 
@@ -66,29 +86,28 @@ const PaymentForm = () => {
 
           <div className="card-input-box">
             <input
-              type="number"
+              type="text"
               name="number"
               placeholder="1234 1234 1234 1234"
               value={paymentDetails.number}
               onChange={handleInputChange}
+              maxLength="19"
               required
             />
             <input
-              type="number"
+              type="text"
               name="expiry"
-              placeholder={
-                paymentDetails.expiry ? paymentDetails.expiry : "06/24"
-              }
+              placeholder="MM/YY"
               value={paymentDetails.expiry}
               onChange={handleInputChange}
-              maxlength="16"
+              maxLength="5"
               required
             />
             <input
-              type="number"
+              type="text"
               name="cvv"
               placeholder="123"
-              maxlength="3"
+              maxLength="3"
               value={paymentDetails.cvv}
               onChange={handleInputChange}
               required

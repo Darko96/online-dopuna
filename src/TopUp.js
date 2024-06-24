@@ -45,17 +45,18 @@ function TopUp() {
 
       <div className="top-up-container">
         <div className="four-card-container">
-          <div className="four-card-box supervisor">
-            <h3>500 RSD</h3>
-            <input
-              type="checkbox"
-              name="checkbox-500"
-              checked={selectedCheckBox === "checkbox-500"}
-              value={500}
-              onChange={handleSelectedCheckBox}
-            />
-          </div>
-          <div className="middle">
+          <div>
+            <div className="four-card-box supervisor">
+              <h3>500 RSD</h3>
+              <input
+                type="checkbox"
+                name="checkbox-500"
+                checked={selectedCheckBox === "checkbox-500"}
+                value={500}
+                onChange={handleSelectedCheckBox}
+              />
+            </div>
+
             <div className="four-card-box team-builder">
               <h3>800 RSD</h3>
               <input
@@ -66,7 +67,9 @@ function TopUp() {
                 onChange={handleSelectedCheckBox}
               />
             </div>
+          </div>
 
+          <div>
             <div className="four-card-box karma">
               <h3>1.200 RSD</h3>
               <input
@@ -77,17 +80,17 @@ function TopUp() {
                 onChange={handleSelectedCheckBox}
               />
             </div>
-          </div>
 
-          <div className="four-card-box calculator">
-            <h3>2.000 RSD</h3>
-            <input
-              type="checkbox"
-              name="checkbox-2000"
-              checked={selectedCheckBox === "checkbox-2000"}
-              value={2000}
-              onChange={handleSelectedCheckBox}
-            />
+            <div className="four-card-box calculator">
+              <h3>2.000 RSD</h3>
+              <input
+                type="checkbox"
+                name="checkbox-2000"
+                checked={selectedCheckBox === "checkbox-2000"}
+                value={2000}
+                onChange={handleSelectedCheckBox}
+              />
+            </div>
           </div>
         </div>
 
@@ -127,6 +130,7 @@ function TopUp() {
               name="phone"
               placeholder="Broj telefona za dopunu*"
               pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              maxLength="10"
               required
               onChange={handlePhoneNUmber}
             />

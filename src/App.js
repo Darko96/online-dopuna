@@ -23,9 +23,3 @@ function App() {
 }
 
 export default App;
-
-// Dakle treba kreirati:
-// - 4 podrazumevane opcije za dopunu kredita uz jednu opciju gde korisnik moze da unese vrednost dopune
-// - Opcija o prihvatanju uslova kao i pristup istima
-// - Mogucnost da se otvori korpa i da se vidi sta je dodato u nju
-// - Ifnormacije o kupovini i plaćanju

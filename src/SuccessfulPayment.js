@@ -4,8 +4,8 @@ function SuccessfulPayment() {
   return (
     <section className="four-card-section">
       <div className="heading-container">
-        <h1>Uspesno se dopunili kredit</h1>
-        <h2>Uzivajte u nasim uslugama</h2>
+        <h1>Uspešno ste dopunili kredit</h1>
+        <h2>Uživajte u našim uslugama</h2>
 
         <img className="logo" alt="a1 logo" src={logo} />
       </div>
